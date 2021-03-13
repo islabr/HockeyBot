@@ -1,6 +1,6 @@
 import json
 import requests
-from get_roster import get_roster_team
+from get_player_info import get_roster_team
 from extract_json import json_extract
 
 team = 10

@@ -1,10 +1,10 @@
 import json
 import argparse
-from get_roster import get_roster_team
+from get_player_info import get_roster_team
 from get_player import get_player_stats
 from get_team import get_team_id
 
-def main(team, player):
+def get_stats(team, player):
 
   id = get_team_id(team)
 
@@ -15,11 +15,6 @@ def main(team, player):
 
   stats = get_player_stats(id, player)
   print(stats)
+  return(stats)
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='flags')
-    parser.add_argument("-t", "--team")
-    parser.add_argument("-p", "--player")
-    args = parser.parse_args()
-    main(args.team, args.player)

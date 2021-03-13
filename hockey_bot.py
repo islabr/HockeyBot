@@ -5,28 +5,12 @@ import requests
 import json
 import random
 from dotenv import load_dotenv
+from checker import get_stats
 
 client = discord.Client()
-sad_words = ["sad", "depressed", "unhappy", "angry", "miserable"]
-starter_encouragements = [
-  "Cheer up!",
-  "Hang in there.",
-  "You are a great person / bot!"
-]
-
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 print(os.getenv('DISCORD_TOKEN'))
-
-def get_quote():
-  response = requests.get("https://statsapi.web.nhl.com/api/v1/")
-  json_data = json.loads(response.text)
-  quote = json_data[0]['q'] + " -" + json_data[0]['a']
-  return(quote)
-
-@client.event
-async def on_ready():
-  print('We have logged in as {0.user}'.format(client))
 
 @client.event
 async def on_message(message):
@@ -35,12 +19,16 @@ async def on_message(message):
 
   msg = message.content
 
-  if msg.startswith('$team'):
-    for word in msg
-    quote = get_quote()
-    await message.channel.send(quote)
+  if msg.startswith('stat'):
+    words = msg.split(" ")
+    if len(words) == 3:
+        team = words[1]
+        player = words[2]
+    elif len(words) == 4:
+        team = words[1] + " " + words[2]
+        player = words[3]
     
-  if any(word in msg for word in sad_words):
-    await message.channel.send(random.choice(starter_encouragements))
+    stats = get_stats(team, player)
+    await message.channel.send(stats)
 
 client.run(TOKEN)
