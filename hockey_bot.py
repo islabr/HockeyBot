@@ -13,7 +13,7 @@ from get_team_info import get_team_stats
 
 client = discord.Client()
 load_dotenv()
-TOKEN = "ODIxNDUyMjQ3MDkxMTE4MDgw.YFD7BQ.mQ9SE7vvZ26rJcldYeKJIGxzQW0"
+TOKEN = "TOKEN"
 
 
 def get_t_stats(team):
