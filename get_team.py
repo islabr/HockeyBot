@@ -10,6 +10,5 @@ def get_team_id(team_name):
 
   # parse file
   obj = json.loads(data)
-
   id = obj[team_name]
   return id

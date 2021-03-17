@@ -3,7 +3,7 @@ import argparse
 import json
 from extract_json import json_extract
 
-def get_roster_team(team_num):
+def get_team_roster(team_num):
     url = "https://statsapi.web.nhl.com/api/v1/teams/" + str(team_num) + "/roster"
 
     response = requests.get(url)
@@ -16,11 +16,9 @@ def get_roster_team(team_num):
    
     for player in player_name:
         spaces=0
-        print(player)
         for character in player:
             if(character.isspace()):
                 spaces=spaces+1
-        print(spaces)
         if spaces == 1:
             first, last = player.split(' ')
         elif spaces == 2:
