@@ -1,6 +1,6 @@
 import json
 import requests
-from get_player_info import get_team_roster
+from get_roster import get_team_roster
 from extract_json import json_extract
 
 def format_skater_stats_string(json_data, name):

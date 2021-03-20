@@ -5,19 +5,15 @@ import requests
 import json
 import random
 from dotenv import load_dotenv
-from get_player_info import get_team_roster
+from get_roster import get_team_roster
 from get_player import get_player_stats
-from get_team import get_team_id
-from get_team_info import get_team_stats
-
+from get_team import get_team_id, get_team_stats
 
 client = discord.Client()
 load_dotenv()
-TOKEN = "TOKEN"
-
+TOKEN = ""
 
 def get_t_stats(team):
-
   id = get_team_id(team)
 
   stats = get_team_stats(id)
@@ -25,7 +21,6 @@ def get_t_stats(team):
 
 
 def get_p_stats(team, player):
-
   id = get_team_id(team)
 
   roster = get_team_roster(id)

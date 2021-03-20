@@ -14,7 +14,7 @@
   "Lightning": 14,
   "Capitals": 15,
   "Blackhawks": 16,
-  "Red Wings": 17,
+  "RedWings": 17,
   "Predators": 18,
   "Blues": 19,
   "Flames": 20,
@@ -25,9 +25,9 @@
   "Stars": 25,
   "Kings": 26,
   "Sharks": 28,
-  "Blue Jackets": 29,
+  "BlueJackets": 29,
   "Wild": 30,
   "Jets": 52,
   "Coyotes": 53,
-  "Golden Knights": 54
+  "GoldenKnights": 54
 }
