@@ -5,6 +5,7 @@ Discord bot for hockey stats
 Usage:
 
 stat teamName playerName
+
 detail teamName
 
 example: 
