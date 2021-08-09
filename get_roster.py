@@ -1,6 +1,4 @@
 import requests
-import argparse
-import json
 from extract_json import json_extract
 
 def get_team_roster(team_num):
@@ -8,8 +6,7 @@ def get_team_roster(team_num):
 
     response = requests.get(url)
     if response.status_code != 200:
-        print("could not retrieve team")
-        exit
+        return("could not retrieve team")
     
     player_name = json_extract(response.json(), 'fullName')
     player_surname = []
