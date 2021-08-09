@@ -1,21 +1,19 @@
-import json
-
 def json_extract(json_data, key):
     """Recursively fetch values from nested JSON."""
-    arr = []
+    data = []
 
-    def extract(json_data, arr, key):
+    def extract(json_data, data, key):
         """Recursively search for values of key in JSON tree."""
         if isinstance(json_data, dict):
-            for k, val in json_data.items():
-                if isinstance(val, (dict, list)):
-                    extract(val, arr, key)
-                elif k == key:
-                    arr.append(val)
+            for index, value in json_data.items():
+                if isinstance(value, (dict, list)):
+                    extract(value, data, key)
+                elif index == key:
+                    data.append(value)
         elif isinstance(json_data, list):
             for item in json_data:
-                extract(item, arr, key)
-        return arr
+                extract(item, data, key)
+        return data
 
-    values = extract(json_data, arr, key)
+    values = extract(json_data, data, key)
     return values
