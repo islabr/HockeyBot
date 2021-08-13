@@ -3,7 +3,16 @@ import json
 
 def format_team_statistics(data):
   #TODO: add stats
-  return "Team statistics unavaliable during offseason."
+  details = data['stats'][0]['splits'][0]
+  team = details['team']['name']
+  gp = details['stat']['gamesPlayed']
+  w = details['stat']['wins']
+  l = details['stat']['losses']
+  pts = details['stat']['pts']
+  percent = (int(l)/int(w))*100
+  details = ("--- **{0}** ---\nGames Played : *{1}*\nWins: *{2}*\nLosses: *{3}*\
+             \nPoints: *{4}*\nWin Percentage:*{5}%*".format(team, gp, w, l, pts, round(percent)))
+  return details
 
 
 def format_team_details(data):
@@ -29,14 +38,16 @@ def get_team_id(team_name):
 
 
 def get_team_info(team_num, type):
-  url = "https://statsapi.web.nhl.com/api/v1/teams/" + str(team_num)
-  print(url)
-  response = requests.get(url)
-  if response.status_code != 200:
-      return("could not retrieve team")
-
   if type == "D":
+    url = "https://statsapi.web.nhl.com/api/v1/teams/" + str(team_num)
+    response = requests.get(url)
+    if response.status_code != 200:
+      return("could not retrieve team")
     data = format_team_details(response.json())
   elif type == "S":
-     data = format_team_statistics(response.json())
+    url = "https://statsapi.web.nhl.com/api/v1/teams/" + str(team_num) + "/stats?stats=statsSingleSeason&season=20202021"
+    response = requests.get(url)
+    if response.status_code != 200:
+      return("could not retrieve team")
+    data = format_team_statistics(response.json())
   return data
