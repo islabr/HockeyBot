@@ -27,16 +27,6 @@ def format_goalie_stats(json_data, name):
   return stats
 
 
-def get_player_details(player_id):
-  url = "https://statsapi.web.nhl.com/api/v1/people/" + str(player_id)
-  response = requests.get(url)
-  if response.status_code != 200:
-    return("could not retrieve player")
-  name = json_extract(response.json(), 'fullName'),
-  position = json_extract(response.json(), 'code')
-  return name, position
-
-
 def get_player_stats(team, player_name):
   team_roster = get_team_roster(team)
   player_id = team_roster[player_name]
@@ -54,3 +44,13 @@ def get_player_stats(team, player_name):
   else:
     stats = format_skater_stats(response.json(), player_name[0])
   return stats
+
+
+def get_player_details(player_id):
+  url = "https://statsapi.web.nhl.com/api/v1/people/" + str(player_id)
+  response = requests.get(url)
+  if response.status_code != 200:
+    return("could not retrieve player")
+  name = json_extract(response.json(), 'fullName'),
+  position = json_extract(response.json(), 'code')
+  return name, position
