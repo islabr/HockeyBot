@@ -7,7 +7,7 @@ from get_team import get_team_id, get_team_info
 
 client = discord.Client()
 load_dotenv()
-TOKEN = ""
+TOKEN = "ODIxNDUyMjQ3MDkxMTE4MDgw.YFD7BQ.MVYSa6tLa_LP_2u3DQVERfb5Ehs"
 
 def get_team(team, type):
   id = get_team_id(team)
