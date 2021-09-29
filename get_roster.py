@@ -26,3 +26,14 @@ def get_team_roster(team_num):
     player_info=dict(zip(player_surname,player_id))
 
     return player_info
+
+def get_team_abbreviation(team_num):
+    url = "https://statsapi.web.nhl.com/api/v1/teams/" + str(team_num)
+
+    response = requests.get(url)
+    if response.status_code != 200:
+        return("could not retrieve team")
+    
+    data = response.json()
+    abbreviation = data['teams'][0]['abbreviation']
+    return abbreviation
