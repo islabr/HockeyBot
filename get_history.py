@@ -9,9 +9,15 @@ import re
 def get_player_history(team, player_name):
   url_list, goals, season, assists, shots, points = ([] for _ in range(6))
 
-  team_roster = get_team_roster(team)
-  abbreviation = get_team_abbreviation(team)
-  player_id = team_roster[player_name]
+ 
+
+  try:
+    team_roster = get_team_roster(team)
+    abbreviation = get_team_abbreviation(team)
+    player_id = team_roster[player_name]
+  except:
+    return 'Could not find "%s"' % str(player_name)
+  
   base_url = "https://statsapi.web.nhl.com/api/v1/people/" + str(player_id) + "/stats?stats=statsSingleSeason&season="
   
   season_2021 = base_url + "20202021"
