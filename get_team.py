@@ -1,5 +1,6 @@
 import requests
 import json
+from get_roster import get_team_abbreviation
 
 def format_team_statistics(data):
   #TODO: add stats
@@ -57,3 +58,16 @@ def get_team_info(team_num, type):
       return("could not retrieve team")
     data = format_team_statistics(response.json())
   return data
+
+
+def get_team_list():
+  with open('teams.json', 'r') as myfile:
+    data=myfile.read()
+
+  # parse file
+  data = json.loads(data)
+  printlist = ""
+  for team, num in data.items():
+    abbreviation = get_team_abbreviation(num)
+    printlist = printlist + "\n" + team + " :" + abbreviation + ":"
+  return printlist

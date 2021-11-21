@@ -1,7 +1,6 @@
 import requests
 from get_roster import get_team_roster, get_team_abbreviation
 import matplotlib.pyplot as plt
-from matplotlib import cbook
 import re
 
 
