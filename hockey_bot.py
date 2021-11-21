@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from tabulate import tabulate
 from get_player import get_player_stats
 from get_history import get_player_history
-from get_team import get_team_id, get_team_info
+from get_team import get_team_id, get_team_info, get_team_list
 
 client = discord.Client()
 load_dotenv()
@@ -37,13 +37,22 @@ async def on_message(message):
 
   #check for a help request
   if msg.startswith('hb help'):
-      help = "**HOCKEY BOT HELP**\n\n To view the details of a team type: ```yaml\nhb detail <team name>\n```\
+    help = "**HOCKEY BOT HELP**\n\nCommand not working? make sure it's all in lower case!\n\
+              \nTo view the list of supported teams: ```yaml\nhb teams\n```\
+              \nTo view the list of commands: ```yaml\nhb commands\n```"
+    await message.channel.send(help)
+      
+  #check for a help request
+  if msg.startswith('hb teams'):
+      teamlist = get_team_list()
+      await message.channel.send(teamlist)
+  
+  if msg.startswith('hb commands'):
+    help = "**HOCKEY BOT HELP**\n\nTo view the details of a team type: ```yaml\nhb detail <team name>\n```\
               \nTo view the current season statistics of a player, type ```yaml\nhb stat <team> <player surname>\n```\
               \nTo view the current season statistics of a team, type ```yaml\nhb stat <team>\n```\
               \nTo view the history of a player, type ```yaml\nhb history <team> <player surname>\n```"
-      await message.channel.send(help)
-      
-
+    await message.channel.send(help)
 
   #check for a detail request
   if msg.startswith('hb detail'):
